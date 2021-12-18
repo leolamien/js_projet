@@ -1,0 +1,97 @@
+###
+@baseUrl = http://localhost:30027
+
+###
+
+
+
+# @name k1
+
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"k1",
+    "password":"k1"
+}
+###
+@k1ngtoken = {{k1.response.body.token}}
+
+### Read all games
+GET http://localhost:30027/jeu/recommandations/open world
+
+### Read game identified by 2
+GET http://localhost:30027/jeu/3
+###
+GET http://localhost:30027/jeu/id
+
+
+
+### Create a game
+POST http://localhost:30027/jeu
+Content-Type: application/json
+
+{
+  "name": "Gtaa",
+  "age_ratings": 18,
+  "category": "open world",
+  "cover": "https://picfiles.alphacoders.com/195/195645.jpg",
+  "first_release_date": "17 septembre 2013",
+  "involved_companies": "Rockstar Games",
+  "multiplayer_modes": "oui",
+  "platforms": "PC- XBOX SERIE X- XBOX ONE, PS4, PS5 ",
+  "summary": "GTA 5 est un jeu vidéo d'aventure et d'action qui consiste à faire des missions, des courses et plein d'autres activités pour gagner de l'argent et s'acheter des appartements, des maisons, des voitures ou des avions",
+  "url": "https://www.rockstargames.com "
+
+}
+
+### Update the game identified by 2
+PUT http://localhost:30025/jeu/3
+Content-Type: application/json
+
+{
+     "name": "Forza Horizon 5 " 
+}
+
+### Delete game identified by 2
+DELETE http://localhost:30025/jeu/2
+
+
+######### ERROR OPERATION  ###########
+
+### Read game which does not exists
+GET http://localhost:30025/jeux/100
+
+### Create a game without info for a property
+POST http://localhost:30025/jeu
+Content-Type: application/json
+
+{
+    "title":"",
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
+
+### Update for a game which does not exist
+PUT http://localhost:30025/jeux/200
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2"
+}
+
+### Update for a game which does not provide any info for a property
+PUT http://localhost:30025/jeux/1
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2",
+    "content":"1"
+}
+
+
+
+###
+GET http://localhost:30027/jeu/recommandations/Horror
+
+###
+GET http://localhost:30027/jeu/re/FPS

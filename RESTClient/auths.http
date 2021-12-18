@@ -1,0 +1,32 @@
+
+
+
+
+###
+@baseUrl = http://localhost:30027
+
+###
+
+
+
+# @name k1
+
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"k1",
+    "password":"k2"
+}
+###
+@k1ngtoken = {{k1.response.body.token}}
+
+
+
+###
+PUT {{baseUrl}}/users/k1/test
+Content-Type: application/json
+
+{
+    "password":"k2"
+}

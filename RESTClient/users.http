@@ -1,0 +1,50 @@
+
+
+
+###
+@baseUrl = http://localhost:30027
+
+###
+
+
+
+# @name k1
+
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+###
+@k1ngtoken = {{k1.response.body.token}}
+### Update for a game which does not exist
+DELETE  http://localhost:30027/jeu/delete/Gtaa
+### Update for a game which does not exist
+PUT http://localhost:30027/jeu/update/Gtaa
+
+Content-Type: application/json
+
+{
+   "summary":"test"
+}
+###
+PUT {{baseUrl}}/users/test
+Content-Type: application/json
+Authorization: {{k1ngtoken}}
+
+{
+    "username":"test",
+    "password":"testt"
+}
+
+
+###
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"test",
+    "password":"testt"
+}
